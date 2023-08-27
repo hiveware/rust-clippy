@@ -263,6 +263,7 @@ mod pass_by_ref_or_value;
 mod pattern_type_mismatch;
 mod permissions_set_readonly_false;
 mod precedence;
+mod prevent_hash_map_iterations;
 mod ptr;
 mod ptr_offset_with_cast;
 mod pub_use;
@@ -1099,6 +1100,7 @@ pub fn register_plugins(store: &mut rustc_lint::LintStore, sess: &Session, conf:
     store.register_late_pass(|_| Box::new(ignored_unit_patterns::IgnoredUnitPatterns));
     store.register_late_pass(|_| Box::<reserve_after_initialization::ReserveAfterInitialization>::default());
     store.register_late_pass(|_| Box::new(implied_bounds_in_impls::ImpliedBoundsInImpls));
+    store.register_late_pass(|_| Box::new(prevent_hash_map_iterations::PreventHashMapIterations));
     // add lints here, do not remove this comment, it's used in `new_lint`
 }
 
